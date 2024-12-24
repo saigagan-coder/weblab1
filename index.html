@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Portfolio Website Design</title>
+    <link rel="stylesheet" href="style.css">
+    <!----Font awesome cdn  font icon css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+</head>
+<body>
+     <div class="hero-header">
+        <div class="wrapper">
+            <header>
+                <div class="logo">
+                    <i class="fa-solid fa-s"></i>
+                    <div class="logo-text">SAI GAGAN</div>
+                </div>
+                <nav>
+                    <div class="togglebtn">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </nav>
+            </header>
+            <div class="container">
+                 <div class="hero-pic">
+                    <img src="images/main_photo.jpg" alt="profile pic">
+                 </div>
+                 <div class="hero-text">
+                    <h5>Hi I'm a <span class="input">Software Developer</span></h5>
+                    <h1>Sai Gagan</h1>
+                    <p> I'm a passionate Software Developer skilled in designing and building innovative applications.
+                        With experience in various technologies like Python, React Native, and MongoDB, 
+                        I enjoy solving complex problems and creating impactful solutions.
+                        My focus lies in writing clean, efficient code and delivering seamless user experiences.
+                    </p>
+
+                    <div class="btn-group">
+                       <button id="viewResumeBtn" class="btn active">View Resume</button>
+                       <button id="contactBtn" class="btn">Contact</button>
+                    </div>
+
+                    <div class="social">
+                        <a href="https://www.linkedin.com/in/sai-gagan-a29767279?trk=contact-info" class="icon"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="https://github.com/devan5h" class="icon"><i class="fa-brands fa-github"></i></a>
+                    
+                    </div>
+                 </div>
+            </div>
+        </div>
+     </div>
+     <!---typed js for typing text effect-->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.10/typed.min.js"></script>
+     <script>
+        /** creating button click show hide navbar **/
+        var togglebtn=document.querySelector(".togglebtn");
+        var nav=document.querySelector(".navlinks");
+        if (togglebtn && nav) {
+            togglebtn.addEventListener("click", function(){
+                this.classList.toggle("click");
+                nav.classList.toggle("open");
+            });
+        }
+
+        var typedElement = document.querySelector(".input");
+        if (typedElement) {
+            new Typed(".input",{
+                strings:["Software Developer"],
+                typeSpeed:70,
+                backSpeed:55,
+                loop:true
+            });
+        }
+
+        /** Function to display resume locally **/
+        var resumeButton = document.getElementById('viewResumeBtn');
+        if (resumeButton) {
+            resumeButton.addEventListener('click', function() {
+                const resumeWindow = window.open("", "Resume", "width=800,height=600");
+                const iframe = document.createElement("iframe");
+                iframe.src = "resume.pdf";
+                iframe.width = "100%";
+                iframe.height = "100%";
+                iframe.style.border = "none";
+                if (resumeWindow) {
+                    resumeWindow.document.body.appendChild(iframe);
+                }
+            });
+        }
+
+        /** Function to animate social media icons **/
+        var contactButton = document.getElementById('contactBtn');
+        if (contactButton) {
+            contactButton.addEventListener('click', function() {
+                const socialIcons = document.querySelectorAll(".social a");
+                socialIcons.forEach((icon, index) => {
+                    setTimeout(() => {
+                        icon.classList.add('spin-and-blue');
+                    }, index * 100);
+                    setTimeout(() => {
+                        icon.classList.remove('spin-and-blue');
+                    }, index * 100 + 500);
+                });
+            });
+        }
+     </script>
+     <style>
+        .scale-icon {
+            transform: scale(1.5);
+            transition: transform 0.3s ease;
+        }
+        
+        .spin-and-blue {
+            transform: rotate(360deg);
+            color: blue;
+            transition: transform 0.5s ease, color 0.5s ease;
+        }
+     </style>
+</body>
+</html>
